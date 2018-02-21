@@ -1,4 +1,4 @@
-// src/actions/games/create.js
+// src/actions/batches/join.js
 import API from '../../api/client'
 import {
   APP_LOADING,
@@ -9,11 +9,11 @@ import {
 
 const api = new API()
 
-export default () => {
+export default (game) => {
   return (dispatch) => {
     dispatch({ type: APP_LOADING })
 
-    api.post('/games', {})
+    api.post(`/games/${game._id}/players`, {})
       .then(() => {
         dispatch({ type: APP_DONE_LOADING })
         dispatch({ type: LOAD_SUCCESS })

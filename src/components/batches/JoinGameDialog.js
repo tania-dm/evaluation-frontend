@@ -5,7 +5,7 @@ import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import joinGame from '../../actions/games/join'
+import joinGame from '../../actions/batches/join'
 
 class JoinGameDialog extends PureComponent {
   static propTypes = {
