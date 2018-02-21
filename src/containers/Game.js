@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchOneGame, fetchPlayers } from '../actions/games/fetch'
-import doTurn from '../actions/games/doTurn'
+import { fetchOneGame, fetchPlayers } from '../actions/batches/fetch'
+import doTurn from '../actions/batches/doTurn'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
-import JoinGameDialog from '../components/games/JoinGameDialog'
-import TurnButton from '../components/games/TurnButton'
+import JoinGameDialog from '../components/batches/JoinGameDialog'
+import TurnButton from '../components/batches/TurnButton'
 
 const playerShape = PropTypes.shape({
   userId: PropTypes.string.isRequired,
