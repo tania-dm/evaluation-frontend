@@ -1,4 +1,4 @@
-// src/containers/Batches.js
+// src/containers/Lobby.js
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
@@ -7,10 +7,10 @@ import { connect as subscribeToWebsocket } from '../actions/websocket'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
-import './Batches.css'
+import './Lobby.css'
 import BatchEditor from '../components/batches/BatchEditor'
 
-class Batches extends PureComponent {
+class Lobby extends PureComponent {
   componentWillMount() {
     const { batchId } = this.props.match.params
     this.props.fetchBatches(batchId)
@@ -34,7 +34,7 @@ class Batches extends PureComponent {
 
   render() {
     return (
-      <div className="Batches">
+      <div className="Lobby">
         <h1 className="Header">Classes</h1>
         <Paper className="paper">
           <BatchEditor />
@@ -50,4 +50,4 @@ class Batches extends PureComponent {
 
 const mapStateToProps = ({ batches, currentUser }) => ({ batches, currentUser })
 
-export default connect(mapStateToProps, { fetchBatches, subscribeToWebsocket, push })(Batches)
+export default connect(mapStateToProps, { fetchBatches, subscribeToWebsocket, push })(Lobby)

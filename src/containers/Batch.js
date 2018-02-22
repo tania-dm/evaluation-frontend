@@ -14,7 +14,7 @@ class Batch extends PureComponent {
   componentWillMount() {
     const { batchId } = this.props.match.params
     this.props.fetchStudents(batchId)
-    this.props.subscribeToWebsocket() 
+    this.props.subscribeToWebsocket()
   }
 
   goToStudent = studentId => event => this.props.push(`/student/${studentId}`)
@@ -24,6 +24,7 @@ class Batch extends PureComponent {
     let name = student.name
     let photo = student.photo
     let lastColor = student.color
+    
 // need edit and delete student button
 
     return (

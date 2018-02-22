@@ -2,23 +2,26 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
-import fetchStudents from '../actions/students/fetch'
+import {fetchOneStudent} from '../actions/students/fetch'
 
 
 
 class Student extends PureComponent {
-  
+  componentWillMount() {
+    const { studentId } = this.props.match.params
+    this.props.fetchOneStudent(studentId)
+    this.props.subscribeToWebsocket()
+  }
+
 
   render() {
+console.log(this.props.students, 'yay')
     return (
-      <div>
-      // bar with colors representing past evals for this student
-        <h1>student with name, photo, color</h1>
-        // render la eval form
-      </div>
-
+      <p>test</p>
     )
   }
 }
 
-export default Student
+const mapStateToProps = ({ students, currentUser }) => ({ students, currentUser })
+
+export default connect(mapStateToProps, { fetchOneStudent, subscribeToWebsocket, push })(Student)

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import {
-  Batches,
+  Lobby,
   Batch,
   SignIn,
   Student
@@ -14,7 +14,7 @@ export default class Routes extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={Batches} />
+        <Route exact path="/" component={Lobby} />
         <Route path="/batch/:batchId" component={Batch} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/student/:studentId" component={Student} />
