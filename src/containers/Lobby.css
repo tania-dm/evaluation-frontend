@@ -1,4 +1,4 @@
-.Batches {
+.Lobby {
   padding: 20px;
   margin: 20px auto;
   width: 80%;
@@ -7,7 +7,7 @@
 .Header {
   text-align: center;
 }
-.Batches .paper {
+.Lobby .paper {
   margin-top: 40px;
   padding: 10px;
   text-align: left;
