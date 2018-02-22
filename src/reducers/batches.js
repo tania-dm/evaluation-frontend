@@ -1,4 +1,4 @@
-// src/reducers/games.js
+// src/reducers/batches.js
 import { FETCHED_BATCHES, FETCHED_ONE_BATCH } from '../actions/batches/fetch'
 import {
   BATCH_CREATED,

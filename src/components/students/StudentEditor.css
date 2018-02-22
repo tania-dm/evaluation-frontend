@@ -1,0 +1,13 @@
+.add-student input {
+  min-width: 250px;
+  padding: 4px;
+  font-size: 16px;
+}
+
+.add-student label {
+  margin-bottom: 8px;
+  display: inline-block;
+}
+.form-group  {
+  margin-bottom: 1rem;
+}
