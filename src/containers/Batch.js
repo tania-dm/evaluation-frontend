@@ -2,19 +2,25 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import fetchStudents from '../actions/students/fetch'
+import fetchOneBatch from '../actions/batches/fetch'
 import { connect as subscribeToWebsocket } from '../actions/websocket'
 import './Batch.css'
 import StudentEditor from '../components/students/StudentEditor'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
+import AskRandomStudent from '../components/batches/AskRandomStudent'
 
 
 class Batch extends PureComponent {
   componentWillMount() {
     const { batchId } = this.props.match.params
     this.props.fetchStudents(batchId)
+    this.props.fetchOneBatch(batchId)
     this.props.subscribeToWebsocket()
+    this.setState({
+      batchId
+    })
   }
 
   goToStudent = studentId => event => this.props.push(`/student/${studentId}`)
@@ -34,15 +40,24 @@ class Batch extends PureComponent {
           primaryText={name}
           />
           <p> {lastColor}</p>
-          <img className="picture" src={photo} alt="no picture available" />
+          <img className="picture" src={photo} alt="no picture available" onClick={this.goToStudent(student._id)} />
       </div>
     )
   }
 
   render() {
+
+    let batch = this.props.batches.find(batch =>{
+      return batch._id === this.state.batchId
+    })
+    if (!batch) {
+      batch = {}
+    }
+
     return (
       <div className="Students">
-        <h1 className="Header">Class</h1>
+        <h1 className="Header">Class #{batch.number}</h1>
+        <AskRandomStudent />
         <Paper className="paper">
           <StudentEditor batchId={this.props.match.params.batchId} />
         </Paper>
@@ -56,6 +71,6 @@ class Batch extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ students, currentUser }) => ({ students, currentUser })
+const mapStateToProps = ({ students, batches, currentUser }) => ({ students, batches, currentUser })
 
-export default connect(mapStateToProps, { fetchStudents, subscribeToWebsocket, push })(Batch)
+export default connect(mapStateToProps, { fetchStudents, fetchOneBatch, subscribeToWebsocket, push })(Batch)
