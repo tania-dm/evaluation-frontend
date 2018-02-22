@@ -24,13 +24,12 @@ class Batch extends PureComponent {
     let name = student.name
     let photo = student.photo
     let lastColor = student.color
-    
+
 // need edit and delete student button
 
     return (
-      <div>
+      <div key={index}>
         <MenuItem
-          key={index}
           onClick={this.goToStudent(student._id)}
           primaryText={name}
           />
