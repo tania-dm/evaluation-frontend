@@ -1,0 +1,17 @@
+.evaluation-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #f6f6f6;
+}
+
+.evaluation-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.paper-student {
+  display: inline-block;
+  padding: 1rem;
+}

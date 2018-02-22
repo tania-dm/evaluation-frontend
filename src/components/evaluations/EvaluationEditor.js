@@ -1,10 +1,16 @@
 // src/components/evaluations/EvaluationEditor.js
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import RaisedButton from 'material-ui/RaisedButton'
 import createEvaluation from '../../actions/evaluations/create'
 import './EvaluationEditor.css'
 
+const TYPES = [
+  'red',
+  'yellow',
+  'green'
+]
 
 class EvaluationEditor extends PureComponent {
   constructor(props) {
@@ -26,8 +32,22 @@ class EvaluationEditor extends PureComponent {
   }
 
   updateColor(event) {
+    let color;
+    switch (event.target.value) {
+      case 'red':
+        color = 'red'
+        break;
+      case 'yellow':
+        color = 'yellow'
+        break;
+      case 'green':
+        color = 'green'
+        break;
+      default:
+        color = 'red'
+    }
     this.setState({
-      color: this.refs.color.value
+      color
     })
   }
 
@@ -52,6 +72,7 @@ class EvaluationEditor extends PureComponent {
     }
 
     this.props.createEvaluation(evaluation)
+    this.props.push(`/batch/${this.props.batchId}`)
 
   }
 
@@ -71,7 +92,7 @@ class EvaluationEditor extends PureComponent {
             onKeyDown={this.updateDate.bind(this)} />
         </div>
 
-        <div className="form-group">
+      {/*  <div className="form-group">
           <label>Color</label>
           <br />
           <input
@@ -82,7 +103,14 @@ class EvaluationEditor extends PureComponent {
             defaultValue={this.state.color}
             onChange={this.updateColor.bind(this)}
             onKeyDown={this.updateColor.bind(this)} />
-        </div>
+        </div> */}
+
+        {TYPES.map((type) => {
+          return <label key={type} htmlFor={type}>
+            <input id={type} type="radio" name="type" value={type} onChange={this.updateColor.bind(this)} />
+            {type}
+          </label>
+        })}
 
         <div className="form-group">
           <label>Remarks</label>
@@ -114,4 +142,4 @@ class EvaluationEditor extends PureComponent {
   }
 }
 
-export default connect(null, { createEvaluation })(EvaluationEditor)
+export default connect(null, { createEvaluation, push })(EvaluationEditor)
