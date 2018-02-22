@@ -6,7 +6,7 @@ import {fetchOneStudent} from '../actions/students/fetch'
 import fetchEvaluations from '../actions/evaluations/fetch'
 import EvaluationEditor from '../components/evaluations/EvaluationEditor'
 import Paper from 'material-ui/Paper'
-
+import './Student.css'
 
 
 class Student extends PureComponent {
@@ -20,6 +20,21 @@ class Student extends PureComponent {
     })
   }
 
+  renderEvaluation = (evaluation, index) => {
+    let styles = {
+      backgroundColor: evaluation.color
+    }
+    return (
+
+      <li
+        key={index}
+        className="evaluation-item"
+        style={styles}
+      >
+      </li>
+
+    )
+  }
 
   render() {
     let student = this.props.students.find(student =>{
@@ -31,17 +46,19 @@ class Student extends PureComponent {
     return (
       <div className="Student">
         <h1>{student.name}</h1>
-        <p>{student.color}</p>
+          <ul className="evaluation-list">
+              { this.props.evaluations.map(this.renderEvaluation)}
+          </ul>
         <h1>{<img className="picture" src={student.photo} alt="no picture available"/>}</h1>
         <br />
-        <Paper className="paper">
-          <EvaluationEditor studentId={this.props.match.params.studentId} />
+        <Paper className="paper-student">
+          <EvaluationEditor studentId={this.props.match.params.studentId} batchId={student.batchId} />
         </Paper>
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ students, currentUser }) => ({ students, currentUser })
+const mapStateToProps = ({ students, evaluations, currentUser }) => ({ students, evaluations, currentUser })
 
 export default connect(mapStateToProps, { fetchOneStudent, fetchEvaluations, subscribeToWebsocket, push })(Student)

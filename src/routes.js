@@ -12,8 +12,11 @@ import {
 
 export default class Routes extends Component {
   render() {
+    let styles = {
+      padding: '2rem'
+    }
     return (
-      <div>
+      <div style={styles}>
         <Route exact path="/" component={Lobby} />
         <Route path="/batch/:batchId" component={Batch} />
         <Route path="/sign-in" component={SignIn} />

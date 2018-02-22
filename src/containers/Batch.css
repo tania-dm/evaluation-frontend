@@ -1,4 +1,7 @@
 .picture  {
-  width: 20%;
-  height: 15%;
+  max-width: 200px;
+  height: auto;
 }
+ .paper {
+   padding: 1rem;
+ }
