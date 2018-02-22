@@ -7,16 +7,13 @@ import { connect as subscribeToWebsocket } from '../actions/websocket'
 import Paper from 'material-ui/Paper'
 import Menu from 'material-ui/Menu'
 import MenuItem from 'material-ui/MenuItem'
-import WatchGameIcon from 'material-ui/svg-icons/image/remove-red-eye'
-import JoinGameIcon from 'material-ui/svg-icons/social/person-add'
-import PlayGameIcon from 'material-ui/svg-icons/action/build'
-import WaitingIcon from 'material-ui/svg-icons/image/timelapse'
 import './Batches.css'
 import BatchEditor from '../components/batches/BatchEditor'
 
 class Batches extends PureComponent {
   componentWillMount() {
-    this.props.fetchBatches()
+    const { batchId } = this.props.match.params
+    this.props.fetchBatches(batchId)
     this.props.subscribeToWebsocket()
   }
 

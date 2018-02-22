@@ -1,4 +1,4 @@
-// src/recipes/BatchEditor.js
+// src/components/batches/BatchEditor.js
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
