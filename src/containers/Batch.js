@@ -30,8 +30,9 @@ class Batch extends PureComponent {
     let name = student.name
     let photo = student.photo
     let lastColor = student.color
-
-// need edit and delete student button
+    let styles = {
+      backgroundColor: lastColor
+    }
 
     return (
       <div key={index}>
@@ -39,8 +40,8 @@ class Batch extends PureComponent {
           onClick={this.goToStudent(student._id)}
           primaryText={name}
           />
-          <p> {lastColor}</p>
-          <img className="picture" src={photo} alt="no picture available" onClick={this.goToStudent(student._id)} />
+          <span className="square" style={styles}> </span>
+          <img className="picture" src={photo} alt="not available" onClick={this.goToStudent(student._id)} />
       </div>
     )
   }

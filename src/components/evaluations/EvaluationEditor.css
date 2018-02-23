@@ -1,0 +1,27 @@
+.add-evaluation label {
+  margin-bottom: 8px;
+  display: inline-block;
+  min-width: 250px;
+  padding: 4px;
+  font-size: 16px;
+}
+.form-group  {
+  margin-bottom: 1rem;
+}
+
+.colors {
+  padding: 2px;
+  display: inline-flex;
+}
+
+.action1 {
+  border: 2px solid #f6f6f6;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.action2 {
+  border: 2px solid #f6f6f6;
+  display: inline-block;
+
+}

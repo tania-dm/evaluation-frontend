@@ -72,7 +72,8 @@ class EvaluationEditor extends PureComponent {
     }
 
     this.props.createEvaluation(evaluation)
-    this.props.push(`/batch/${this.props.batchId}`)
+    this.props.push(`/student/${this.props.studentId}`)
+  {/*}  this.props.push(`/batch/${this.props.batchId}`) */}
 
   }
 
@@ -83,11 +84,12 @@ class EvaluationEditor extends PureComponent {
           <label>Daily Evaluation for: </label>
           <br />
           <input
+            id="date"
             type="date"
             ref="date"
             className="Date"
             placeholder="eg: 2018-03-20"
-            defaultValue={this.state.Date}
+            defaultValue={this.state.date}
             onChange={this.updateDate.bind(this)}
             onKeyDown={this.updateDate.bind(this)} />
         </div>
@@ -105,12 +107,14 @@ class EvaluationEditor extends PureComponent {
             onKeyDown={this.updateColor.bind(this)} />
         </div> */}
 
-        {TYPES.map((type) => {
-          return <label key={type} htmlFor={type}>
-            <input id={type} type="radio" name="type" value={type} onChange={this.updateColor.bind(this)} />
-            {type}
-          </label>
-        })}
+        <div className="colors">
+          {TYPES.map((type) => {
+            return <label key={type} htmlFor={type}>
+              <input id={type} type="radio" name="type" value={type} onChange={this.updateColor.bind(this)} />
+              {type}
+            </label>
+          })}
+        </div>
 
         <div className="form-group">
           <label>Remarks</label>
@@ -125,15 +129,17 @@ class EvaluationEditor extends PureComponent {
             onKeyDown={this.updateRemark.bind(this)} />
         </div>
 
-        <div className="actions">
+        <div >
           <RaisedButton
+            className="action1"
             label="Save"
             primary={true}
             onClick={this.saveEvaluation.bind(this)}
              />
-           <RaisedButton
-             label="Save & Next"
-             primary={true}
+          <RaisedButton
+            className="action2"
+            label="Save & Next"
+            primary={true}
 
               />
         </div>
