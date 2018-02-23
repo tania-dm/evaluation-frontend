@@ -5,3 +5,12 @@
  .paper {
    padding: 1rem;
  }
+
+
+ .square {
+   display: inline-block;
+   vertical-align: top;
+   width: 40px;
+   height: 40px;
+   border: 1px solid #f6f6f6;
+ }
