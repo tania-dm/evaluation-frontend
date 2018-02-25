@@ -72,8 +72,7 @@ class EvaluationEditor extends PureComponent {
     }
 
     this.props.createEvaluation(evaluation)
-    this.props.push(`/student/${this.props.studentId}`)
-  {/*}  this.props.push(`/batch/${this.props.batchId}`) */}
+    this.props.push(`/batch/${this.props.batchId}`)
 
   }
 

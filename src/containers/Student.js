@@ -49,7 +49,7 @@ class Student extends PureComponent {
           <ul className="evaluation-list">
               { this.props.evaluations.map(this.renderEvaluation)}
           </ul>
-        <h1>{<img className="picture" src={student.photo} alt="no picture available"/>}</h1>
+        <h1>{<img className="picture" src={student.photo} alt="student"/>}</h1>
         <br />
         <Paper className="paper-student">
           <EvaluationEditor studentId={this.props.match.params.studentId} batchId={student.batchId} />
