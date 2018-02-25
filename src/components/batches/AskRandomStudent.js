@@ -6,22 +6,12 @@ import { connect } from 'react-redux'
 class AskRandomStudent extends PureComponent {
   componentWillMount() {
     this.setState({
+      student: {},
       open: false
     })
   }
 
   openDialog = () => {
-    this.setState({
-      open: true
-    })
-  }
-
-  closeDialog = () => {
-    this.setState({
-      open: false
-    })
-  }
-  render() {
     let colorsArray = []
     for (let i=0; i<49; i++) {
       colorsArray.push("red")
@@ -48,11 +38,18 @@ class AskRandomStudent extends PureComponent {
       student = greenStudents[Math.floor(Math.random()*greenStudents.length)]
     }
 
-    // let student = this.props.students[Math.floor(Math.random()*this.props.students.length)];
-    if(!student) {
-      student = {}
-    }
+    this.setState({
+      student,
+      open: true
+    })
+  }
 
+  closeDialog = () => {
+    this.setState({
+      open: false
+    })
+  }
+  render() {
     return (
       <div>
         <FlatButton
@@ -66,9 +63,9 @@ class AskRandomStudent extends PureComponent {
           onRequestClose={this.handleClose}
         >
           Aloha, <strong>Mr. Teacher!</strong> Next question goes to:
-          {student.name}
+          {this.state.student.name}
           <br />
-          <img className="picture" src={student.photo} alt="student" />
+          <img className="picture" src={this.state.student.photo} alt="student" />
           <br />
 
           <FlatButton
