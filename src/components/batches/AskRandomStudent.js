@@ -6,12 +6,40 @@ import { connect } from 'react-redux'
 class AskRandomStudent extends PureComponent {
   componentWillMount() {
     this.setState({
+      student: {},
       open: false
     })
   }
 
   openDialog = () => {
+    let colorsArray = []
+    for (let i=0; i<49; i++) {
+      colorsArray.push("red")
+    }
+    for (let i=0; i<33; i++) {
+      colorsArray.push("yellow")
+    }
+    for (let i=0; i<18; i++) {
+      colorsArray.push("green")
+    }
+
+    let randColor = colorsArray[Math.floor(Math.random()*colorsArray.length)]
+
+    let redStudents = this.props.students.filter(student => student.color === "red")
+    let yellowStudents = this.props.students.filter(student => student.color === "yellow")
+    let greenStudents = this.props.students.filter(student => student.color === "green")
+
+    let student;
+    if (randColor === "red") {
+      student = redStudents[Math.floor(Math.random()*redStudents.length)]
+    } else if (randColor === "yellow") {
+      student = yellowStudents[Math.floor(Math.random()*yellowStudents.length)]
+    } else if (randColor === "green") {
+      student = greenStudents[Math.floor(Math.random()*greenStudents.length)]
+    }
+
     this.setState({
+      student,
       open: true
     })
   }
@@ -22,10 +50,6 @@ class AskRandomStudent extends PureComponent {
     })
   }
   render() {
-    let student = this.props.students[Math.floor(Math.random()*this.props.students.length)];
-    if(!student) {
-      student = {}
-    }
     return (
       <div>
         <FlatButton
@@ -39,9 +63,9 @@ class AskRandomStudent extends PureComponent {
           onRequestClose={this.handleClose}
         >
           Aloha, <strong>Mr. Teacher!</strong> Next question goes to:
-          {student.name}
+          {this.state.student.name}
           <br />
-          <img className="picture" src={student.photo} alt="no picture available" />
+          <img className="picture" src={this.state.student.photo} alt="student" />
           <br />
 
           <FlatButton
